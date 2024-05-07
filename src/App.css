@@ -1,0 +1,933 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Bckground */
+
+.bg {
+  height: 900px;
+
+  background-image:url('../public/images/back.jpg') ;
+  /* background-image: url("../public/images/cloude.jpg"); */
+  background-size: cover;
+
+  -webkit-animation: slidein 100s;
+  animation: slidein 100s;
+
+  -webkit-animation-fill-mode:both;
+  animation-fill-mode: both;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    background-position: center;
+    background-size: 2000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+
+@keyframes slidein {
+  from {
+    background-position:center;
+    background-size: 2000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+
+/* ////////////////////// */
+
+/* --- Default Overrides - Personal Preference --- */
+
+form > * {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  /* position: relative; */
+}
+
+ul,
+li {
+  list-style: none;
+  background-color: transparent;
+}
+
+/* --- Clearfix for floated Elements --- */
+
+/* I never ended up using this for the nav-bar */
+.clearfix:after {
+  /* object-fit:; */
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  background-color: transparent;
+}
+
+/* --- Typography --- */
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* background-color: #eee; */
+  background-color: transparent;
+  /* margin-top: 60px; height of nav-bar */
+}
+
+p {
+  line-height: 1.4;
+}
+
+.bolder {
+  font-weight: bolder;
+}
+
+.lighter {
+  font-weight: lighter;
+}
+
+.text-center {
+  text-align: center;
+}
+.background-color {
+  background-color: transparent;
+}
+
+.site-logo {
+  font-size: 2rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  letter-spacing: 0.8rem;
+  margin: 0 1rem;
+}
+
+/* --- Elements --- */
+
+.container {
+  max-width: 1200px; /* max 'width' of contents of site */
+  margin: 0 auto; /* centered horizontally  */
+}
+
+.nav-bar {
+  position: fixed; /* lock to top */
+  top: 0;
+  width: 100%; /* full width */
+  /* background-color: white; */
+  /* background-color: transparent; */
+  height: 60px;
+  position: absolute;
+  background-color: transparent ;
+}
+
+.nav-bar .container {
+  display: flex;
+  align-items: center; /* vertically center */
+  height: 100%;
+}
+
+/* Hide checkbox that controls Mobile Nav Button*/
+#drop-down-cbox {
+  display: none;
+}
+
+/* Mobile Nav Button */
+#drop-down-cbox + label {
+  position: relative;
+  display: none;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background-color: transparent;
+  
+  transition: all 10ms ease-in-out;
+}
+
+/* Mobile Nav Button Bars */
+#drop-down-cbox + label span {
+  position: absolute;
+  display: block;
+  /* background-color: #666; */
+  background-color: black;
+  width: 34px;
+  height: 4px;
+  border-radius: 2px;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centering trick */
+  transition: all 300ms ease-in-out;
+}
+
+/* Mobile Nav Button Bars Invididually */
+#drop-down-cbox + label span:nth-child(1) {
+  top: 35%; /* evenly spaced */
+}
+#drop-down-cbox + label span:nth-child(2) {
+  top: 50%; /* evenly spaced */
+}
+#drop-down-cbox + label span:nth-child(3) {
+  top: 65%; /* evenly spaced */
+}
+
+/* Mobile Nav Button Styling for Checked */
+#drop-down-cbox:checked + label {
+  /* background-color: #666; */
+  background-color: transparent;
+}
+
+#drop-down-cbox:checked + label span {
+  /* background-color: white; */
+  background-color: transparent;
+}
+
+/* Transform the bars into an 'X' */
+#drop-down-cbox:checked + label span:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg); /* center, then rotate */
+  background-color: black;
+}
+#drop-down-cbox:checked + label span:nth-child(2) {
+  left: -150%; /* move center bar out of the picture */
+  background-color: black;
+}
+#drop-down-cbox:checked + label span:nth-child(3) {
+  top: 50%;
+  background-color: black;
+  transform: translate(-50%, -50%) rotate(-45deg); /* center, then rotate */
+}
+
+/* Main Nav Desktop */
+.main-nav {
+  flex-grow: 1; /* fill remaining space */
+  display: flex;
+  justify-content: space-around; /* evenly space items */
+  align-items: center; /* center vertically */
+
+  
+}
+
+
+.main-nav li {
+  display: block;
+  width: 100%;
+  height: 60px;
+  line-height: 60px; /* vertically center text, matches height */
+  text-align: center;
+
+  
+  
+}
+
+.main-nav li a,
+.main-nav li span {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* .main-nav li a:hover,
+.main-nav li span:hover {
+	border-bottom: 4px solid #666;
+} */
+
+.main-nav li > ul {
+  max-height: 0px; /* max-height instead of height, height can't transition to auto */
+  transition: all 500ms ease-in-out;
+  overflow: hidden; /* make it so nav doesn't show beyond the 0px max-height */
+}
+
+.main-nav li:hover > ul {
+  max-height: 180px; /* height x how many links */
+  height: auto;
+}
+
+.main-nav li > ul li a,
+.main-nav li > ul li span {
+  /* background-color: white; */
+  background-color: transparent;
+}
+
+.main-nav li > ul li a:hover,
+.main-nav li > ul li span:hover {
+  /* background-color: #666; */
+  background-color: transparent;
+  color: white;
+  border-bottom: none;
+}
+
+/* .main-nav li::after{
+  content: " ";
+  display: block;
+  height: 4px ;
+  width: 100px;
+  background-color: brown;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+} */
+.main-nav:hover::after{
+  transform: scale(1);
+}
+/* ejnkjenjdneknjdkd */
+
+/* input[type=text] {
+  padding: 4px;
+  font-size: 17px;
+  border: none;
+  border: 2px solid #0000ff;
+  width: 50%;
+  margin-left: 20%;
+}
+
+input[type=text] :hover{
+ border: 2px solid black;
+ transition: ease-in;
+}
+
+.search-container button {
+ 
+  float: right;
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.search-container button:hover {
+  background: #ccc;
+} */
+
+/* Tablet and Mobile View */
+@media (max-width: 768px) {
+  .site-logo {
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  #drop-down-cbox + label {
+    display: block; /* unhide the mobile nav button */
+  }
+
+  .main-nav {
+    max-height: 0px; /* same vertical grow transition trick as above */
+    height: calc(
+      100vh - 60px
+    ); /* take full vertical viewport height, -60px for nav-bar */
+    overflow: hidden;
+    position: absolute;
+    top: 60px;
+    line-height: auto;
+    left: 0;
+    width: 100%;
+  
+    flex-direction: column;
+    z-index: 100;
+    background-color: black;
+    color: white;
+    /* background-color: #d8baba48; */
+    transition: all 500ms ease-in-out;
+  }
+
+  #drop-down-cbox:checked ~ .main-nav {
+    max-height: calc(100vh - 60px);
+    transition: all 500ms ease-in-out;
+  }
+
+  .main-nav li span {
+    position: relative;
+  }
+
+  /* design and position downward arrow */
+  .main-nav li span:after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    margin-left: 8px;
+    transform: translateY(-50%) rotate(-45deg);
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+  }
+
+  .main-nav li a:hover,
+  .main-nav li span:hover {
+    background-color: transparent;
+    color: transparent;
+    border-bottom: none;
+  }
+
+  .main-nav li > ul li {
+    position: relative;
+  }
+
+  .main-nav li > ul li a,
+  .main-nav li > ul li span {
+    background-color: #eee;
+  }
+}
+/*  */
+/* Add words in Center of image */
+
+.words {
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  height: 200px;
+  width: 900px;
+  margin-top: 300px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 540;
+  letter-spacing: 0.01rem;
+  line-height: 2rem;
+}
+.box {
+    
+  
+  margin-left: 17%;
+  margin-right: 17%;
+}
+
+/* Explore Button */
+
+#box-button {
+  /* background-color: rgb(115, 212, 244); */
+  width: 20%;
+  height: 20%;
+  border-radius: 1px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin-top: 15px;
+  outline: none;
+  border-inline: none;
+  background-color: black;
+  color: gray;
+  transition: 0.5s;
+}
+
+#box-button:hover {
+  cursor: pointer;
+  font-size: 18px;
+  color: #eee;
+}
+
+/* Words and Box responsive  */
+
+@media (max-width: 768px) {
+  .words {
+    height: 200px;
+    width: 200px;
+    font-size: 16px;
+    margin-left: 22%;
+    /* margin-right: 22%; */
+    text-align: center;
+  }
+  #box-button {
+    height: 30px;
+    width: 120px;
+  }
+  #box-button:hover {
+    cursor: pointer;
+    border: 0px;
+    font-size: 18px;
+    animation: ease-in-out;
+  }
+  
+}
+
+/************************************ Mid-section ************************************/
+
+/* Mid -section carousal*/
+
+.mid-content {
+  top: 100px;
+  /* border: 2px solid black; */
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.content {
+  /* border: 2px solid black; */
+  height: 500px;
+  width: 40%;
+  margin: 50px 0px 0px 20px;
+
+  /* using content words in one css property */
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 540;
+  letter-spacing: 0.01rem;
+}
+
+hr {
+  width: 70%;
+  border: 1px solid rgb(99, 99, 255);
+  border-radius: 1px;
+}
+
+
+
+.slider-frame{
+  overflow: hidden;
+  height: 800px;
+  width: 1200px;
+  margin-left: 490px;
+}
+
+/*---------- SLIDE ANIMATION --------------*/
+
+
+@keyframes slide_animation{
+  0% {left:0px;}
+  10% {left:0px;}
+  20% {left:1200px;}
+  30% {left:1200px;}
+  40% {left: 2400px;}
+  50% {left: 2400px;}
+  60% {left: 1200px;}
+  70% {left: 1200px;}
+  80% {left: 0px;}
+  90% {left: 0px;}
+  100% {left:0px;}
+}
+
+@-webkit-keyframes slide_animation{
+  0% {left:0px;}
+  10% {left:0px;}
+  20% {left:1200px;}
+  30% {left:1200px;}
+  40% {left: 2400px;}
+  50% {left: 2400px;}
+  60% {left: 1200px;}
+  70% {left: 1200px;}
+  80% {left: 0px;}
+  90% {left: 0px;}
+  100% {left:0px;}
+}
+
+.slide-images{
+  width: 3600px;
+  height: 800px;
+  margin: 0 0 0 -2400px;
+  position: relative;
+  -webkit-animation-name: slide_animation;
+  animation-name: slide_animation;
+  -webkit-animation-duration: 33s;
+  animation-duration: 33s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+
+.img-container{
+  height: 800px;
+  width: 1200px;
+  position: relative;
+  float: left;
+}
+
+
+
+@media (max-width: 768px) {
+  .mid-content {
+    width: 100%;
+    height: 250vh;
+  }
+  .content {
+    width: 90%;
+    text-align: center;
+    justify-content: center;
+    margin-left: 5%;
+  }
+  .slider-frame {
+    margin-top: 80vh;
+    height: 90vh;
+    width: 100vw;
+    margin-left: -5%;
+    background-size: auto;
+  }
+  
+}
+
+/* **************************   Email section   ************************************** */
+
+/* Emil-section */
+
+/* contact us image and input email section */
+
+.contact-container {
+  border: 2px solid black;
+  height: 100vh;
+  margin-top: 20%;
+  text-align: center;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.img_help {
+  position: relative;
+  background-image: url("../public/images/cloude.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.contact {
+  letter-spacing: 0.1rem;
+  line-height: 200%;
+  padding: 30% 0% 2% 0%;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.email input {
+  height: 8vh;
+  width: 80vh;
+  max-width: 100vh;
+  font-size: 15px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  border-color: rgba(0, 0, 0, 0.3);
+  padding-left: 2%;
+}
+
+.enter {
+  position: relative;
+  height: 8.5vh;
+  width: 30vh;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-left: 0.1%;
+  outline: none;
+  color: gray;
+  letter-spacing: 0.1rem;
+  transition: 0.5s;
+  background-color: black;
+}
+
+.enter:hover {
+  color: #fff;
+}
+
+@media (max-width:768px){
+  .img_help{
+    background-size:200vw;
+  
+  }
+  .email input{
+    width: 80vw;
+    height: 6vh;
+  }
+  .enter{
+    width: 50vw;
+    height: 6vh;
+    margin-top: 5%;
+  }
+} 
+
+/******************************* Header-mid css ****************************8*/
+
+/* Header mid css */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.mid {
+  margin-top: 6%;
+  height: 160vh;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 2rem;
+  object-fit: cover;
+  align-items: center;
+  margin-left: 6.4%;
+
+  .boxmid {
+    position: relative;
+    width: 15rem;
+    height: 20rem;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+}
+.abc{
+  -webkit-transform: scale(1.5);
+	transform: scale(1.5);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.abc:hover{
+  -webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+h3{
+    text-align: center;
+    padding: 5%;
+    text-transform: uppercase;
+}
+h4{
+
+  
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 15%;
+}
+
+@media (max-width: 768px) {
+  .mid {
+    margin-top: 25%;
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    height: 600vh;
+  }
+  .boxmid {
+    padding: 0;
+  }
+}
+
+/******************************* FOTTER ******************************/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  margin-top: 10%;
+  background: #000;
+  padding: 30px 0px;
+  text-align: center;
+}
+.footer .row {
+  width: 100%;
+  color: gray;
+  margin: 1% 0%;
+  font-size: 0.8rem;
+  padding: 0.6% 0%;
+}
+
+.footer .row ul {
+  width: 100%;
+}
+.footer .row ul li {
+  display: inline-block;
+  margin: 0px 30px;
+}
+.footer .row .link i {
+  font-size: 2rem;
+  margin: 0% 1%;
+}
+
+.font-row {
+  width: 100%;
+  color: gray;
+  margin: 2% 0%;
+  font-size: 0.8rem;
+  padding: 0.6% 0%;
+}
+
+.footer .font-row i {
+  text-decoration: none;
+  color: gray;
+  transition: 0.5s;
+}
+
+.footer .font-row i:hover {
+  color: #fff;
+}
+
+.footer .row li {
+  text-decoration: none;
+  color: gray;
+  transition: 0.5s;
+}
+.footer .row li:hover {
+  color: #fff;
+}
+.footer .font-row i {
+  display: inline-block;
+  margin: 0px 30px;
+}
+
+.footer .font-row i {
+  font-size: 2rem;
+  margin: 0% 1%;
+}
+@media (max-width: 768px) {
+  .footer {
+    text-align: left;
+    padding: 5%;
+  }
+  .footer .row ul li {
+    display: block;
+    margin: 10px 0px;
+    text-align: left;
+  }
+  .footer .row a i {
+    margin: 0% 3%;
+  }
+}
+
+.nnn {
+  color: red;
+  margin-top: 50%;
+  background-color: black;
+}
+
+
+/* Explore page */
+
+.explore-con{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  width:1000px;
+  height:600px;
+  padding:50px;
+  background-color: #f5f5f5;
+  box-shadow: 0 30px 50px #dbdbdb;
+}
+#exslide{
+  width:max-content;
+  margin-top:50px;
+}
+.exitem{
+  width:200px;
+  height:300px;
+  background-position: 50% 50%;
+  display: inline-block;
+  transition: 0.5s;
+  background-size: cover;
+  position: absolute;
+  z-index: 1;
+  top:50%;
+  transform: translate(0,-50%);
+  border-radius: 20px;
+  box-shadow:  0 30px 50px #505050;
+}
+.exitem:nth-child(1),
+.exitem:nth-child(2){
+  left:0;
+  top:0;
+  transform: translate(0,0);
+  border-radius: 0;
+  width:100%;
+  height:100%;
+  box-shadow: none;
+}
+.exitem:nth-child(3){
+  left:50%;
+}
+.exitem:nth-child(4){
+  left:calc(50% + 220px);
+}
+.exitem:nth-child(5){
+  left:calc(50% + 440px);
+}
+.exitem:nth-child(n+6){
+  left:calc(50% + 660px);
+  opacity: 0;
+}
+.exitem .excontent{
+  position: absolute;
+  top:50%;
+  left:100px;
+  width:300px;
+  text-align: left;
+  padding:0;
+  color:#eee;
+  transform: translate(0,-50%);
+  display: none;
+  font-family: system-ui;
+}
+.exitem:nth-child(2) .excontent{
+  display: block;
+  z-index: 11111;
+}
+.exitem .name{
+  font-size: 40px;
+  font-weight: bold;
+  opacity: 0;
+  animation:showcontent 1s ease-in-out 1 forwards
+}
+.exitem .des{
+  margin:20px 0;
+  opacity: 0;
+  animation:showcontent 1s ease-in-out 0.3s 1 forwards
+}
+.exitem button{
+  padding:10px 20px;
+  border:none;
+  opacity: 0;
+  animation:showcontent 1s ease-in-out 0.6s 1 forwards
+}
+@keyframes showcontent{
+  from{
+      opacity: 0;
+      transform: translate(0,100px);
+      filter:blur(33px);
+  }to{
+      opacity: 1;
+      transform: translate(0,0);
+      filter:blur(0);
+  }
+}
+.exbuttons{
+  position: absolute;
+  bottom:30px;
+  z-index: 222222;
+  text-align: center;
+  width:100%;
+}
+.exbuttons button{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  border:1px solid #555;
+  transition: 0.5s;
+}.exbuttons button:hover{
+  background-color: #bac383;
+}
